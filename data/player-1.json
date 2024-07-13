@@ -1,0 +1,34 @@
+{
+  "type": "player",
+  "id": "account.929e2c3b88ca4f4aa04ea9ccb8a4c671",
+  "attributes": {
+    "titleId": "pubg",
+    "shardId": "xbox",
+    "patchVersion": "",
+    "banType": "Innocent",
+    "clanId": "clan.42ec41d600b8414ea2efa0b401678411",
+    "name": "Riosrap",
+    "stats": null
+  },
+  "relationships": {
+    "assets": {
+      "data": []
+    },
+    "matches": {
+      "data": [
+        {
+          "type": "match",
+          "id": "d31866f7-1470-48a4-a430-99e18853eb5b"
+        },
+        {
+          "type": "match",
+          "id": "3ac3ab87-2656-49c2-9ab3-0622d5096ae8"
+        },
+        {
+          "type": "match",
+          "id": "ae816b67-f2f8-4d78-b51b-ee0309d73d53"
+        }
+      ]
+    }
+  }
+}
