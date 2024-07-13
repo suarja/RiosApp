@@ -30,5 +30,9 @@
         }
       ]
     }
+  },
+  "links": {
+    "self": "https://api.pubg.com/shards/xbox/players/account.929e2c3b88ca4f4aa04ea9ccb8a4c671",
+    "schema": ""
   }
 }
