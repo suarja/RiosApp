@@ -2,12 +2,11 @@
 require "./data/player-1.php";
 require './src/functions.php';
 $heading = "RiosApp";
+$rios = $playerOne;
+$riosName = $rios->attributes->name;
+// dd($rios->attributes->name);
 
 
 
 
-// $player = new Player(
-//     $player,
-//     new Links($player['links']['self']),
-//     new Meta($player['meta'])
-// );
+require './views/index.view.php';
