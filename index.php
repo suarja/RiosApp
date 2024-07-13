@@ -1,5 +1,5 @@
 <?php
-require "data/player-1.php";
+require "./data/player-1.php";
 require './src/functions.php';
 $heading = "RiosApp";
 
