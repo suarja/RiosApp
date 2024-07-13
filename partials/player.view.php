@@ -10,16 +10,18 @@
                         <h1 class="text-xl font-bold">
                             <p class="text-black"><?php echo  $riosName; ?></p>
                         </h1>
-                        <p class="text-gray-700">Software Developer</p>
+                        <p class="text-gray-700">
+                            <?= strtoupper($rios->attributes->shardId); ?>
+                        </p>
                         <div class="mt-6 flex flex-wrap gap-4 justify-center">
-                            <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Contact</a>
-                            <a href="#" class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">Resume</a>
+                            <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Stats</a>
+                            <a href="#" class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">Team</a>
                         </div>
                     </div>
                     <hr class="my-6 border-t border-gray-300">
                     <div class="flex flex-col">
                         <span class="text-gray-700 uppercase font-bold tracking-wider mb-2">Skills</span>
-                        <ul>
+                        <ul class=" text-black">
                             <li class="mb-2">JavaScript</li>
                             <li class="mb-2">React</li>
                             <li class="mb-2">Node.js</li>
