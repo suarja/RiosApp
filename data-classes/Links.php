@@ -10,4 +10,12 @@ class Links
         $this->self = $self;
         $this->schema = $schema;
     }
+
+    public static function fromArray(array $array): Links
+    {
+        return new Links(
+            $array["self"],
+            $array["schema"]
+        );
+    }
 }

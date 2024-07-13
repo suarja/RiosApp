@@ -10,4 +10,12 @@ class Data
         $this->type = $type;
         $this->id = $id;
     }
+
+    public static function fromArray(array $array): Data
+    {
+        return new Data(
+            $array["type"],
+            $array["id"]
+        );
+    }
 }
