@@ -3,7 +3,7 @@ require 'Attributes.php';
 require 'Relationships.php';
 require 'Links.php';
 
-class RootObject
+class Player
 {
     public string $type;
     public string $id;
