@@ -1,7 +1,4 @@
 <?php
-require 'Attributes.php';
-require 'Relationships.php';
-require 'Links.php';
 
 class Player
 {

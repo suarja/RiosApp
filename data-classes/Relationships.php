@@ -1,8 +1,5 @@
 <?php
 
-require 'Assets.php';
-require 'Matches.php';
-
 class Relationships
 {
     public Assets $assets;

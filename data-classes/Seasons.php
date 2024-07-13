@@ -1,6 +1,4 @@
 <?php
-require 'Data.php';
-require 'Meta.php';
 
 class Season
 {

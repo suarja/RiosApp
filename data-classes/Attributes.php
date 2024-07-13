@@ -2,29 +2,29 @@
 
 class Attributes
 {
-    public null $stats;
+    public string $stats;
     public string $titleId;
-    public string $shardId;
-    public string $patchVersion;
-    public string $banType;
+    public string $shardId = "xbox";
+    public string $patchVersion = "";
+    public string $banType = "Innocent";
     public string $clanId;
     public string $name;
 
     public function __construct(
-        null $stats,
+        string $stats,
         string $titleId,
         string $shardId,
-        string $patchVersion,
-        string $banType,
         string $clanId,
-        string $name
+        string $name,
+        string $banType= "Innocent",
+        string $patchVersion = "",
     ) {
         $this->stats = $stats;
         $this->titleId = $titleId;
         $this->shardId = $shardId;
-        $this->patchVersion = $patchVersion;
         $this->banType = $banType;
         $this->clanId = $clanId;
         $this->name = $name;
+        $this->patchVersion = $patchVersion;
     }
 }
