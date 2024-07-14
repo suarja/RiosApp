@@ -11,7 +11,10 @@
 ## TODO 
 
 - Add schema to database
-  - player 
+  - player  
+    - add fields on top of pugb player schema
+      - _id (from db)
+      - imageUrl (optional)
   - squads
   - stats
   - 
