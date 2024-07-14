@@ -4,7 +4,7 @@ class SeasonData
 {
     public string $type;
     public string $id;
-    public Attributes $attributes;
+    public SeasonAttributes $attributes;
 
     public function __construct(
         string $type,
@@ -14,5 +14,14 @@ class SeasonData
         $this->type = $type;
         $this->id = $id;
         $this->attributes = $attributes;
+    }
+
+    public static function fromArray(array $data): SeasonData
+    {
+        return new SeasonData(
+            $data["type"],
+            $data["id"],
+            SeasonAttributes::fromArray($data["attributes"])
+        );
     }
 }

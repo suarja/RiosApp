@@ -10,4 +10,12 @@ class SeasonAttributes
         $this->isCurrentSeason = $isCurrentSeason;
         $this->isOffseason = $isOffseason;
     }
+
+    public static function fromArray(array $data): SeasonAttributes
+    {
+        return new SeasonAttributes(
+            $data["isCurrentSeason"],
+            $data["isOffseason"]
+        );
+    }
 }
