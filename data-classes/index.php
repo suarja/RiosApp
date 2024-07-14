@@ -11,3 +11,4 @@ require "Data.php";
 require "SeasonData.php";
 require "SeasonAttributes.php";
 require "SeasonLink.php";
+require "PlayerSeasonStats.php";
