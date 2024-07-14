@@ -1,9 +1,9 @@
 <?php
 
 $routes = [
-    '/' => './views/partials/landing.view.php',
-    '/players' => './views/partials/players.php',
-    '/players/create' => './views/partials/create-player.php',
+    '/' => './src/controllers/landing.php',
+    '/players' => './src/controllers/players.php',
+    '/players/create' => './src/controllers/create-player.php',
 ];
 
 function routeToController($routes)
