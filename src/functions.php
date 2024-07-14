@@ -7,44 +7,59 @@ function dd($data)
     die();
 }
 
-class Database
+
+function getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY)
 {
-    private $pdo;
-    public function __construct($dsn, $user, $password)
-    {
-        $this->pdo = new PDO($dsn, $user, $password);
-    }
-    public function query($sql)
-    {
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute();
-        $statement = new Statement($statement);
-        return $statement;
+    // Init cURL session
+    $url = "https://api.pubg.com/shards/xbox/seasons/{$seasonId}/gameMode/squad/players?filter[playerIds]={$playerOne->id}";
+    $ch = curl_init($url);
+
+    // Set the HTTP headers and options
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Accept: application/vnd.api+json',
+        'Authorization: Bearer ' . $PUBG_API_KEY,
+    ]);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+    $response = curl_exec($ch);
+    if ($response === false) {
+        throw new Exception(curl_error($ch), curl_errno($ch));
     }
 
-    public function fetch($statement)
-    {
-        return $statement->fetch();
-    }
-    public function fetchAll($statement)
-    {
-        return $statement->fetchAll();
-    }
+    $responseData = json_decode($response, true);
+    $playerSeasonStats = new PlayerSeason(json_encode($responseData));
+    $playerSeasonStats = $playerSeasonStats->data[0];
+    curl_close($ch);
+
+    return $playerSeasonStats;
 }
 
-class Statement
-{
-    private $statement;
-    public function __construct($statement)
-    {
-        $this->statement = $statement;
+function getPlayer(
+    $playerName,
+    $PUBG_API_KEY,
+    $shardId = 'xbox',
+) {
+    // Init cURL session
+    $url = "https://api.pubg.com/shards/{$shardId}/players?filter[playerNames]={$playerName}";
+    $ch = curl_init($url);
+
+    // Set the HTTP headers and options
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Accept: application/vnd.api+json',
+        'Authorization: Bearer ' . $PUBG_API_KEY,
+    ]);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+    $response = curl_exec($ch);
+    if ($response === false) {
+        throw new Exception(curl_error($ch), curl_errno($ch));
     }
-    public function fetch()
-    {
-        return $this->statement->fetch(PDO::FETCH_ASSOC);
-    }
-    public function fetchAll()
-    {
-        return $this->statement->fetchAll(PDO::FETCH_ASSOC);
-    }
+
+    $responseData = json_decode($response, true);
+    $player =  Player::fromJSON($responseData);
+    curl_close($ch);
+
+    return $player;
 }
