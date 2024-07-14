@@ -8,3 +8,6 @@ require "Relationships.php";
 require "Seasons.php";
 require "Matches.php";
 require "Data.php";
+require "SeasonData.php";
+require "SeasonAttributes.php";
+require "SeasonLink.php";
