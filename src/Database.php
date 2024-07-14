@@ -34,6 +34,7 @@ class Database
     public function __construct($dsn, $user = "root", $password = "")
     {
         $this->pdo = new PDO($dsn, $user, $password);
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     public function query($sql)
     {
@@ -70,6 +71,43 @@ class Database
         $this->pdo->prepare('INSERT INTO users (name) VALUES ("Jason")')->execute();
         $users = $this->query('SELECT * FROM users')->fetchAll();
         dd($users);
+    }
+
+    public  function createPlayersTable()
+    {
+        /* CREATE TABLE IF NOT EXISTS players (
+    id VARCHAR(255) PRIMARY KEY,
+    type VARCHAR(50),
+    title_id VARCHAR(255),
+    shard_id VARCHAR(50),
+    clan_id VARCHAR(255),
+    name VARCHAR(255),
+    ban_type VARCHAR(50),
+    patch_version VARCHAR(50),
+    assets_json TEXT,
+    matches_json TEXT,
+    link_self VARCHAR(255),
+    link_schema VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; */
+        $sql = "CREATE TABLE IF NOT EXISTS players (
+            id VARCHAR(255) PRIMARY KEY,
+            type VARCHAR(50),
+            title_id VARCHAR(255),
+            shard_id VARCHAR(50),
+            clan_id VARCHAR(255),
+            name VARCHAR(255),
+            ban_type VARCHAR(50),
+            patch_version VARCHAR(50),
+            assets_json TEXT,
+            matches_json TEXT,
+            link_self VARCHAR(255),
+            link_schema VARCHAR(255),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+        $this->pdo->exec($sql);
     }
 }
 
