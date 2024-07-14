@@ -12,7 +12,9 @@
                             <?= strtoupper($playerOne->attributes->shardId); ?>
                         </p>
                         <div class="mt-6 flex flex-wrap gap-4 justify-center">
-                            <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Stats</a>
+                            <form method="POST">
+                                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Stats</button>
+                            </form>
                             <a href="#" class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">Team</a>
                         </div>
                     </div>
