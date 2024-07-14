@@ -1,4 +1,4 @@
-<div class="mx-20 mt-20 w-Full p-4 shadow-md rounded-lg border-t-2 border-teal-400">
+<div class=" bg-white  w-Full  shadow-md ">
     <div class="flex justify-between pb-4">
         <p class="font-bold text-xl">PUBG Seasons</p>
     </div>
