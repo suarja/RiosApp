@@ -13,7 +13,7 @@
                 </div>
                 <div class="p-2">
                     <p class="font-semibold text-lg">Season</p>
-                    <span class="text-gray-600"><?= $key ?></span>
+                    <span class="text-gray-600"><?= $key + 1 ?></span>
                 </div>
 
             </a>
