@@ -1,7 +1,14 @@
 <?php
-require "./data-classes/index.php";
-$seasonsListPath = "./seasons-list.json";
+$seasonsListPath = "./data/seasons.json";
 $seasonsListJsonString = file_get_contents($seasonsListPath);
-$seasonsList = Season::fromJSON($seasonsListJsonString);
-$currentSeason = array_filter($seasonsList->data, fn ($season) => $season->data->isCurrentSeason === true)[0];
-// $seasonId = $currentSeason->data->id;
+$seasonsList = Season::fromJson($seasonsListJsonString);
+$currentSeason;
+foreach ($seasonsList->data as $season) {
+    if ($season->attributes->isCurrentSeason) {
+        $currentSeason = $season;
+        break;
+    }
+}
+
+$seasonId = $currentSeason->id;
+
