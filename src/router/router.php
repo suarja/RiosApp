@@ -3,6 +3,7 @@
 $routes = [
     '/' => './src/controllers/landing.php',
     '/players' => './src/controllers/players.php',
+    '/player' => './src/controllers/player.php',
     '/players/create' => './src/controllers/create-player.php',
 ];
 
