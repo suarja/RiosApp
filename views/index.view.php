@@ -31,9 +31,10 @@
 </head>
 
 <body class="dark-mode">
-  
+
   <?php require './partials/landing.view.php'; ?>
   <?php require './partials/player.view.php'; ?>
+  <?php require './partials/seasons-list.php'; ?>
 </body>
 
 </html>
