@@ -19,7 +19,7 @@
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Rios</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">La Tm</a>
+        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">La Team</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
@@ -86,7 +86,8 @@
     <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
       <div class="text-center">
         <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-          <p class="text-black"><?php echo $riosName; ?></p>
+          RiosApp
+
 
         </h1>
         <p class="mt-6 text-lg leading-8 text-gray-600">
