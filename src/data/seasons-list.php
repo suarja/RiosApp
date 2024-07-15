@@ -1,5 +1,5 @@
 <?php
-$seasonsListPath = "./data/seasons.json";
+$seasonsListPath = base_path("/src/data/seasons.json");
 $seasonsListJsonString = file_get_contents($seasonsListPath);
 $seasonsList = Season::fromJson($seasonsListJsonString);
 $currentSeason;
