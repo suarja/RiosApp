@@ -1,4 +1,4 @@
-<main class="h-screen bg-gray-100">
+<main class="h-min-screen bg-gray-100">
     <?php require base_path("/views/partials/header.php"); ?>
     <div class="relative isolate px-6 pt-24 lg:px-8">
         <div class="">
