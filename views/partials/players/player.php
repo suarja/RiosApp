@@ -1,4 +1,4 @@
-<main class="h-min-screen bg-gray-100">
+<main class="h-screen bg-gray-100">
     <?php require base_path("/views/partials/header.php"); ?>
     <div class="relative isolate px-6 pt-24 lg:px-8">
         <div class="">
@@ -18,9 +18,9 @@
                                 </p>
                                 <div class="mt-6 flex flex-wrap gap-4 justify-center">
                                     <form method="POST">
-                                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Stats</button>
+                                        <button disabled type="" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded">Stats</button>
                                     </form>
-                                    <a href="#" class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">Team</a>
+                                    <a href="/players" class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">Team</a>
                                 </div>
                             </div>
                             <hr class="my-6 border-t border-gray-300">
