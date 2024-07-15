@@ -1,4 +1,4 @@
-<?php require './views/partials/head.php'; ?>
+<?php require base_path("/views/partials/head.php"); ?>
 <main class="bg-white h-screen">
     <div>
         <h1>Players</h1>
@@ -11,4 +11,4 @@
 </main>
 
 
-<?php require './views/partials/footer.php'; ?>
+<?php require base_path("/views/partials/footer.php"); ?>

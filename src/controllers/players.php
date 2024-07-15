@@ -1,4 +1,5 @@
 <?php
-require './data/player-1.php';
+require base_path('/src/data/player-1.php');
 $heading = 'Players';
-require './views/players.view.php';
+
+require view('players', compact('heading'));

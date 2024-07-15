@@ -2,12 +2,9 @@
 
 <?php
 
-
-require "./data/player-1.php";
-require "./src/functions.php";
-require "./data/seasons-list.php";
-require "./config.php";
-require_once './src/Database.php';
+require base_path("/src/data/player-1.php");
+require base_path("/src/data/seasons-list.php");
+require base_path("/config.php");
 
 $heading = "Player Stats";
 
@@ -26,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $playerOne = Player::fromDB($playerOne);
         $playerSeasonStats
             = getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY);
-        require "./views/player.view.php";
+        require view("player", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats]);
         exit;
     } else {
         $playerOne = getPlayer($playerName, $PUBG_API_KEY);
@@ -36,5 +33,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 } else {
-    require "./views/partials/player-form.php";
+    require base_path("/views/partials/player-form.php");
 }

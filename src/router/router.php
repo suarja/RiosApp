@@ -1,10 +1,10 @@
 <?php
 
 $routes = [
-    '/' => './src/controllers/landing.php',
-    '/players' => './src/controllers/players.php',
-    '/player' => './src/controllers/player.php',
-    '/players/create' => './src/controllers/create-player.php',
+    '/' => base_path('/src/controllers/landing.php'),
+    '/players' => base_path('/src/controllers/players.php'),
+    '/player' => base_path('/src/controllers/player.php'),
+    '/players/create' => base_path('/src/controllers/create-player.php'),
 ];
 
 function routeToController($routes)

@@ -1,4 +1,4 @@
-<?php require './views/partials/head.php'; ?>
+<?php base_path("/views/partials/head.php"); ?>
 
 <main class="h-screen">
   <div class="bg-white h-full w-full">
@@ -128,4 +128,4 @@
   </div>
 </main>
 
-<?php require './views/partials/footer.php'; ?>
+<?php base_path("/views/partials/foooter.php"); ?>

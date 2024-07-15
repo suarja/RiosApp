@@ -1,3 +1,3 @@
 <?php
 $heading = "RiosApp";
-require "./views/landing.view.php";
+require view('landing', compact('heading'));
