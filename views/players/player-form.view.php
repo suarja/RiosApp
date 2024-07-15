@@ -1,5 +1,5 @@
  <?php require base_path("/views/partials/head.php"); ?>
- <main class="flex justify-center h-min-screen bg-gray-100">
+ <main class="flex justify-center h-screen bg-gray-100">
      <?php require base_path("/views/partials/header.php"); ?>
      <div class="relative isolate px-6 pt-24 lg:px-8 h-full items-center flex">
          <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full ">
