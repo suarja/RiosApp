@@ -18,7 +18,8 @@
         "shardId": "xbox",
         "patchVersion": "",
         "banType": "Innocent",
-        "clanId": "clan.**42ec41d600b8414ea2efa0b401678411**",
+        "clanId": "clan.**42ec41d600b
+        8414ea2efa0b401678411**",
         "name": "Riosrap",
         "stats": null
       },
