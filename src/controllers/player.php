@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $playerOne = Player::fromDB($playerOne);
         $playerSeasonStats
             = getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY);
-        require view("player", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading]);
+        require view("players/player", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading]);
         exit;
     } else {
         $player = getPlayer($playerName, $PUBG_API_KEY);
@@ -36,15 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = "Player not found";
 
             $playerSeasonStats = getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY);
-            require view("player-form", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading, "errors" => $errors]);
+            require view("players/player", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading, "errors" => $errors]);
             exit;
         }
         $db->insertPlayer($playerOne);
         $playerSeasonStats = getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY);
-        require view("player-form", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading, "errors" => $errors]);
+        require view("players/player", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading, "errors" => $errors]);
         exit;
     }
 } else {
     $playerSeasonStats = getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY);
-    require view("player-form", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading, "errors" => $errors]);
+    require view("players/player", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading, "errors" => $errors]);
 }
