@@ -1,20 +1,24 @@
-
-
 <?php
+
+use Core\Database;
 
 require base_path("/src/data/player-1.php");
 require base_path("/src/data/seasons-list.php");
 require base_path("/config.php");
-require base_path("/src/core/Database.php");
 
 $heading = "Player Stats";
 
+// Load the database
+require base_path('/src/core/Database.php');
+$db = new Database($DB_CONFIG);
+
+$errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $playerName = $_POST['playerName'];
     // Check if the player name is empty
     if (empty($playerName)) {
         $error = "Please enter a player name";
-        require "./views/partials/player-form.php";
+        require base_path("/views/partials/player-form.php");
         exit;
     }
     // check in the database if the player exists
@@ -24,15 +28,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $playerOne = Player::fromDB($playerOne);
         $playerSeasonStats
             = getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY);
-        require view("player", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats]);
+        require view("player", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading]);
         exit;
     } else {
-        $playerOne = getPlayer($playerName, $PUBG_API_KEY);
+        $player = getPlayer($playerName, $PUBG_API_KEY);
+        if (!$player) {
+            $errors[] = "Player not found";
+
+            $playerSeasonStats = getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY);
+            require view("player-form", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading, "errors" => $errors]);
+            exit;
+        }
         $db->insertPlayer($playerOne);
         $playerSeasonStats = getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY);
-        require view("player", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats]);
+        require view("player-form", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading, "errors" => $errors]);
         exit;
     }
 } else {
-    require base_path("/views/partials/player-form.php");
+    $playerSeasonStats = getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY);
+    require view("player-form", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading, "errors" => $errors]);
 }
