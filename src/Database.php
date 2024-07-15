@@ -1,6 +1,6 @@
 <?php
 
-require "vendor/autoload.php";
+require base_path('/vendor/autoload.php');
 
 // Load the .env file
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
