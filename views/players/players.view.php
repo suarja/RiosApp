@@ -4,20 +4,11 @@
     <?php require base_path("/views/partials/header.php"); ?>
     <div class="relative isolate px-6 pt-24 lg:px-8">
         <div class="container mx-auto py-8">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-4">
+            <div class="flex flex-col gap-4 px-4">
                 <!-- Form for adding a new player -->
-                <div class="col-span-3">
-                    <div class="bg-white p-8 rounded-lg shadow-lg">
-                        <form method="POST" action="#">
-                            <div class="mb-6">
-                                <label for="playerName" class="block text-gray-700 text-sm font-bold mb-2">Player Name:</label>
-                                <input type="text" id="playerName" name="playerName" placeholder="Enter player name" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                                    Add to Team
-                                </button>
-                            </div>
+                <div class="">
+                    <div class="bg-white p-8 rounded-lg shadow-lg flex justify-between">
+                        <a class=" font-semibold leading-6 text-gray-900 bg-blue-200 hover:bg-blue-300 rounded-lg px-4 py-2" href="/player/store">Add a Player  </a>
                         </form>
                     </div>
                 </div>
