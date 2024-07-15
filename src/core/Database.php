@@ -153,12 +153,17 @@ class Database
         $statement->execute(['id' => $playerId]);
     }
 
-    public function getPlayers()
-    {
-        $statement = $this->pdo->prepare("SELECT * FROM players");
+    public function getPlayers(
+        $limit = 10,
+        $offset = 0,
+        $orderBy = 'created_at',
+        $order = 'DESC'
+    ) {
+        $statement = $this->pdo->prepare("SELECT * FROM players ORDER BY $orderBy $order LIMIT $limit OFFSET $offset");
         $statement->execute();
         return $statement->fetchAll();
     }
+
 
     public function getPlayer($playerId)
     {
