@@ -60,6 +60,9 @@ function getPlayer(
         throw new Exception(curl_error($ch), curl_errno($ch));
     }
 
+    if (isFetchError($response)) {
+        return null;
+    }
     $responseData = json_encode(json_decode($response, true)['data'][0]);
     $player =  Player::fromJSON($responseData);
     curl_close($ch);
@@ -68,7 +71,16 @@ function getPlayer(
 }
 
 
+function isFetchError($response)
+{
 
+    if (isset(json_decode($response, true)['errors'])) {
+
+        return true;
+    } else {
+        return  false;
+    }
+}
 
 function view($name, $data = [])
 {
