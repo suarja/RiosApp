@@ -22,7 +22,7 @@
         </div>
         <div class="hidden lg:flex lg:gap-x-12">
           <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Rios</a>
-          <a href="/players" class="text-sm font-semibold leading-6 text-gray-900">Players</a>
+          <a href="/player" class="text-sm font-semibold leading-6 text-gray-900">Player Stats</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
