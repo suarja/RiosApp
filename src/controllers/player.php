@@ -5,6 +5,7 @@
 require base_path("/src/data/player-1.php");
 require base_path("/src/data/seasons-list.php");
 require base_path("/config.php");
+require base_path("/src/core/Database.php");
 
 $heading = "Player Stats";
 
@@ -29,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $playerOne = getPlayer($playerName, $PUBG_API_KEY);
         $db->insertPlayer($playerOne);
         $playerSeasonStats = getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY);
-        require "./views/player.view.php";
+        require view("player", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats]);
         exit;
     }
 } else {
