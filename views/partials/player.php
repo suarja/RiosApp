@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-span-4 sm:col-span-9">
+                <div class="col-span-4 sm:col-span-9 flex flex-col gap-8">
                     <div class="bg-white shadow rounded-lg p-6 text-black">
                         <h2 class=" text-xl text-center py-4 font-bold mb-4">Player Statistics</h2>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 ">
@@ -68,6 +68,31 @@
 
 
                         <!-- Social Media Links and Experience Sections as previously defined -->
+                    </div>
+                    <div class="flex justify-center">
+                        <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+                            <form method="POST">
+                                <div class="mb-6">
+                                    <label for="playerName" class="block text-gray-700 text-sm font-bold mb-2">Player Name:</label>
+                                    <input type="text" id="playerName" name="playerName" placeholder="Enter player name" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                        Submit
+                                    </button>
+                                    <button type="reset" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                        Clear
+                                    </button>
+                                </div>
+                                <div>
+                                    <ul class="text-red-500">
+                                        <?php foreach ($errors as $error) : ?>
+                                            <li><?= $error; ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
