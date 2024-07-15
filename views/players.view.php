@@ -1,6 +1,8 @@
 <?php require base_path("/views/partials/head.php"); ?>
-<main class="bg-white h-screen">
-    <main class="h-screen bg-gray-100">
+
+<main class="h-screen bg-gray-100">
+    <?php require base_path("/views/partials/header.php"); ?>
+    <div class="relative isolate px-6 pt-24 lg:px-8">
         <div class="container mx-auto py-8">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-4">
                 <!-- Form for adding a new player -->
@@ -48,8 +50,7 @@
                 </div>
             </div>
         </div>
-    </main>
-
+    </div>
 </main>
 
 
