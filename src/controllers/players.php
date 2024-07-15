@@ -21,5 +21,4 @@ foreach ($players as $player) {
     $teamPlayers[] = new PlayerWithStats($player, $playerSeasonStats);
 }
 
-require view('players', compact('heading', 'teamPlayers'));
-
+require view('players/players', compact('heading', 'teamPlayers'));
