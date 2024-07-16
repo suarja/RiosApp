@@ -21,6 +21,7 @@ spl_autoload_register(function ($class) {
          require $class;
     } else {
         echo "Class not found";
+        echo $class;
     }
 });
 
