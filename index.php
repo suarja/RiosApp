@@ -1,7 +1,7 @@
 <?php
 $isProduction = $_SERVER["HTTP_HOST"] === "riosapp.zeabur.app";
 if ($isProduction) {
-    define("BASE_PATH", __DIR__ . "/../");
+    define("BASE_PATH", __DIR__ . "/..");
 } else {
     define("BASE_PATH", __DIR__);
 }
