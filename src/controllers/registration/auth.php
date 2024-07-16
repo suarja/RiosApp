@@ -33,7 +33,7 @@ if (empty($errors)) {
         exit;
     }
 
-    $_SESSION['user'] = $user;
+    $_SESSION['user'] = ['id' => $user['id'], 'email' => $user['email'], 'isLogged' => true];
     redirect('/players');
     exit;
 } else {
