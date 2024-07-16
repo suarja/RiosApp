@@ -45,7 +45,7 @@ function dsn($DB_HOST, $DB_PORT, $DB_NAME)
 
 $dsn = dsn($DB_HOST, $DB_PORT, $DB_NAME);
 
- $DB_CONFIG = [
+$DB_CONFIG = [
     'dsn' => $dsn,
     'user' => $DB_USER,
     'password' => $DB_PASSWORD
