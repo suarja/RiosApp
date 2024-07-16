@@ -14,7 +14,7 @@
                 </div>
                 <!-- Player list -->
                 <div class="col-span-9">
-                    <div class="bg-white shadow rounded-lg p-6">
+                    <div class="bg-white text-black shadow rounded-lg p-6">
                         <h2 class="text-xl font-bold mb-4">Team Members</h2>
                         <!-- Dynamically generated player cards -->
                         <?php foreach ($teamPlayers as $player) : ?>
