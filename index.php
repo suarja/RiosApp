@@ -1,6 +1,5 @@
 <?php
 
-use Router\Router;
 
 const BASE_PATH = __DIR__;
 
@@ -11,12 +10,20 @@ $heading = "RiosApp";
 require view("index", ["heading" => $heading]);
 
 
-// spl_autoload_register(function ($class) {
-//     require base_path("/src/core/{$class}.php");
-// });
+spl_autoload_register(function ($class) {
+    $path = BASE_PATH . '/' . str_replace('\\', '/', $class) . '.php';
+    if (file_exists($path)) {
+        require $path;
+    }
+});
 
-require base_path('/src/router/Router.php');
-$router = new Router();
+// Set up the autoloader
+spl_autoload_register(function ($class) {
+    require BASE_PATH . '/src/' . str_replace('\\', '/', $class) . '.php';
+});
+
+
+$router = new Router\Router();
 
 require base_path('/src/router/routes.php');
 
