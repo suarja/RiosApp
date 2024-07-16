@@ -74,10 +74,12 @@
                             <!-- Social Media Links and Experience Sections as previously defined -->
                         </div>
                         <div class="flex justify-center">
-                            <div class="">
+                            <div class="flex gap-8">
                                 <div class="bg-white p-8 rounded-lg shadow-lg flex justify-between">
                                     <b class=" font-semibold leading-6 text-gray-900 bg-yellow-200 hover:bg-yellow-300 rounded-lg px-4 py-2" href="/player/store">🚧 Work in progress 🚧 </b>
                                 </div>
+                               
+
                             </div>
                         </div>
                     </div>
