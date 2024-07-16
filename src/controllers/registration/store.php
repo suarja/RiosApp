@@ -28,7 +28,7 @@ if (empty($errors)) {
         //? Refactor: add method to User model to create user (User::create)
         $db->query("INSERT INTO Users (email, password) VALUES ('$email', '" . password_hash($password, PASSWORD_DEFAULT) . "')");
         $success = 'User registered successfully';
-        redirect("/players");
+        redirect("/register");
     }
 } else {
     require view('registration/register', ['errors' => $errors]);
