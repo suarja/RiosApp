@@ -1,5 +1,7 @@
 <?php
 
+ob_start(); // Start output buffering.
+
 class Router
 {
     protected $routes = [];
@@ -7,21 +9,21 @@ class Router
     public function get($uri, $controller)
     {
 
-        $this->add($uri, $controller, 'GET');
+        return $this->add($uri, $controller, 'GET');
     }
     public function post($uri, $controller)
     {
-        $this->add($uri, $controller, 'POST');
+        return $this->add($uri, $controller, 'POST');
     }
 
     public function put($uri, $controller)
     {
-        $this->add($uri, $controller, 'PUT');
+        return $this->add($uri, $controller, 'PUT');
     }
 
     public function delete($uri, $controller)
     {
-        $this->add($uri, $controller, 'DELETE');
+        return $this->add($uri, $controller, 'DELETE');
     }
 
 
@@ -30,6 +32,15 @@ class Router
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
+
+
+                if ($route["middleware"] === "auth") {
+                    $isLogged = $_SESSION["isLogged"] ?? false;
+                    if (!$isLogged) {
+                        header("Location: /login");
+                        exit;
+                    }
+                }
                 require $route['controller'];
             }
         }
@@ -40,18 +51,16 @@ class Router
         $this->routes[] = [
             'uri' => $uri,
             'controller' => $controller,
-            'method' => $method
+            'method' => $method,
+            "middleware" => null
         ];
 
         return $this;
     }
 
-    public function only($key) {
-        if ($key=== "auth") {
-            $isLogged = $_SESSION['isLogged'] ?? false;
-            
-        }
-
+    public function only($key)
+    {
+        $this->routes[count($this->routes) - 1]["middleware"] = $key;
     }
 }
 
@@ -62,3 +71,5 @@ $router->route(
     $uri,
     $method
 );
+
+ob_end_flush(); // End buffering and flush all output to client.

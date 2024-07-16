@@ -1,3 +1,5 @@
+<?php base_path("/views/partials/head.php"); ?>
+
 <main class="h-screen bg-gray-200">
     <div class=" h-full w-full">
         <?php require base_path("/views/partials/header.php"); ?>
