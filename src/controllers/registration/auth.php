@@ -34,7 +34,7 @@ if (empty($errors)) {
     }
 
     $_SESSION['user'] = ['id' => $user['id'], 'email' => $user['email'], 'isLogged' => true];
-    redirect('/players');
+    header('Location: /');
     exit;
 } else {
     require view('registration/login', ['errors' => $errors]);
