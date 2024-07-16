@@ -15,10 +15,10 @@ require view("index", ["heading" => $heading]);
 
 
 spl_autoload_register(function ($class) {
-   $class =  str_replace('\\', DIRECTORY_SEPARATOR, $class) ;
-   $class = base_path("/src/{$class}.php");
+    $class =  str_replace('\\', DIRECTORY_SEPARATOR, $class);
+    $class = "./src/{$class}.php";
     if (file_exists($class)) {
-         require $class;
+        require $class;
     } else {
         echo "Class not found";
         echo $class;
