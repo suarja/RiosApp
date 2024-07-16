@@ -42,6 +42,12 @@ class Router
             'controller' => $controller,
             'method' => $method
         ];
+
+        return $this;
+    }
+
+    public function only($key) {
+        
     }
 }
 

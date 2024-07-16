@@ -1,4 +1,4 @@
- <?php require base_path("/views/partials/head.php"); ?>
+<?php require base_path("/views/partials/head.php"); ?>
  <main class="flex justify-center h-screen bg-gray-100">
      <?php require base_path("/views/partials/header.php"); ?>
      <div class="relative isolate px-6 pt-24 lg:px-8 h-full items-center flex">
