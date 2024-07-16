@@ -1,5 +1,8 @@
 <?php
 
+// Start session
+session_start();
+
 // Define base path
 define("BASE_PATH", __DIR__);
 require BASE_PATH . '/functions.php';
@@ -17,4 +20,3 @@ $method = $_POST["_method"] ?? $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 $uri = parse_url($uri, PHP_URL_PATH);
 require base_path('/src/router/router.php');
-
