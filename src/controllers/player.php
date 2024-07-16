@@ -46,5 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     $playerSeasonStats = getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY);
-    require view("players/player", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading, "errors" => $errors]);
+    if (!$playerSeasonStats) {
+        $errors[] = "Player not found";
+        require view("players/player", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading, "errors" => $errors]);
+        exit;
+    }
+    return require view("players/player", ["playerOne" => $playerOne, "playerSeasonStats" => $playerSeasonStats, "heading" => $heading, "errors" => $errors]);
 }
