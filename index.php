@@ -1,8 +1,39 @@
 <?php
-echo __DIR__;
+$isProduction = $_SERVER["HTTP_HOST"] === "riosapp.zeabur.app";
+if ($isProduction) {
+    define("BASE_PATH", __DIR__ . "/../");
+} else {
+    define("BASE_PATH", __DIR__);
+}
 
-require __DIR__ . "/functions.php";
-$path = $_SERVER["HTTP_HOST"]  === "riosapp.zeabur.app" ? __DIR__ . "/../" : __DIR__;
-echo $path;
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-dd($_SERVER);
+require BASE_PATH . '/functions.php';
+
+$heading = "RiosApp";
+
+require view("index", ["heading" => $heading]);
+
+spl_autoload_register(function ($class) {
+    $class =  str_replace('\\', DIRECTORY_SEPARATOR, $class);
+    $class = base_path("/src/{$class}.php");
+    if (file_exists($class)) {
+        require $class;
+    } else {
+        echo "Class not found";
+        echo $class;
+    }
+});
+
+
+$router = new Router\Router();
+
+require base_path('/src/router/routes.php');
+
+$method = $_POST["_method"] ?? $_SERVER['REQUEST_METHOD'];
+$uri = $_SERVER['REQUEST_URI'];
+$router->route(
+    $uri,
+    $method
+);
