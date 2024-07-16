@@ -1,9 +1,10 @@
 <?php
 
+ob_start(); // Start output buffering.
+
 require base_path("/src/core/App.php");
 
 $db = App::resolve('db');
-
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -17,7 +18,6 @@ if (empty($password)) {
 }
 
 if (empty($errors)) {
-    //? Refactor: add method to User model to find user by email (User::findByEmail)
     $user = $db->query("SELECT * FROM Users WHERE email = '$email'")->fetch();
     if (!$user) {
         $errors['password'] = 'Wrong email / password combination';
@@ -25,7 +25,7 @@ if (empty($errors)) {
         require view('registration/login', ['errors' => $errors]);
         exit;
     }
-    //? Refactor validation to use Class Validator
+
     if (!password_verify($password, $user['password'])) {
         $errors['password'] = 'Wrong email / password combination';
         $errors['email'] = 'Wrong email / password combination';
@@ -40,3 +40,5 @@ if (empty($errors)) {
     require view('registration/login', ['errors' => $errors]);
     exit;
 }
+
+ob_end_flush(); // End buffering and flush all output to client.
