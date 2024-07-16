@@ -47,7 +47,11 @@ class Router
     }
 
     public function only($key) {
-        
+        if ($key=== "auth") {
+            $isLogged = $_SESSION['isLogged'] ?? false;
+            
+        }
+
     }
 }
 
