@@ -1,11 +1,6 @@
 <?php
 
-$isProduction = $_SERVER["HTTP_HOST"] === "riosapp.zeabur.app";
-if ($isProduction) {
-    define("BASE_PATH", $_SERVER["HOME"]);
-} else {
     define("BASE_PATH", __DIR__);
-}
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
