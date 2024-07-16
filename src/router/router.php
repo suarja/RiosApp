@@ -24,7 +24,7 @@ class Router
         $this->add($uri, $controller, 'DELETE');
     }
 
-    
+
 
     public function route($uri, $method)
     {
@@ -47,6 +47,7 @@ class Router
 
 $router = new Router();
 require base_path('/src/router/routes.php');
+// uri and method come from the index.php file where the router is required
 $router->route(
     $uri,
     $method
