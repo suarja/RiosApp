@@ -2,7 +2,6 @@
 require base_path('/src/data/player-1.php');
 $heading = 'Players';
 
-use Core\Database;
 
 require base_path("/config.php");
 require base_path("/src/data/seasons-list.php");

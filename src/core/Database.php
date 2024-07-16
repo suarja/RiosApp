@@ -1,11 +1,5 @@
 <?php
 
-namespace Core;
-
-use PDO;
-use Exception;
-use Dotenv;
-
 require base_path('/vendor/autoload.php');
 
 // Load the .env file
