@@ -4,13 +4,10 @@
 <head>
     <style>
         html {
-            background-color: black;
+            background-color: white;
         }
 
-        body {
-            color: black;
-            font-size: 25px;
-        }
+     
 
         .dark-mode {
             background-color: black;
