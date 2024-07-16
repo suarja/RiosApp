@@ -6,20 +6,26 @@ class Router
 
     public function get($uri, $controller)
     {
-        $this->routes[] = [
-            'uri' => $uri,
-            'controller' => $controller,
-            'method' => 'GET'
-        ];
+
+        $this->add($uri, $controller, 'GET');
     }
     public function post($uri, $controller)
     {
-        $this->routes[] = [
-            'uri' => $uri,
-            'controller' => $controller,
-            'method' => 'POST'
-        ];
+        $this->add($uri, $controller, 'POST');
     }
+
+    public function put($uri, $controller)
+    {
+        $this->add($uri, $controller, 'PUT');
+    }
+
+    public function delete($uri, $controller)
+    {
+        $this->add($uri, $controller, 'DELETE');
+    }
+
+    
+
     public function route($uri, $method)
     {
         foreach ($this->routes as $route) {
@@ -27,6 +33,15 @@ class Router
                 require $route['controller'];
             }
         }
+    }
+
+    public function add($uri, $controller, $method)
+    {
+        $this->routes[] = [
+            'uri' => $uri,
+            'controller' => $controller,
+            'method' => $method
+        ];
     }
 }
 
@@ -36,5 +51,3 @@ $router->route(
     $uri,
     $method
 );
-
-
