@@ -1,11 +1,11 @@
 <?php
-
 define("BASE_PATH", __DIR__);
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require BASE_PATH . '/functions.php';
+dd(PHP_URL_PATH);
 
 $heading = "RiosApp";
 
@@ -25,6 +25,7 @@ $heading = "RiosApp";
 
 $method = $_POST["_method"] ?? $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
+$uri = parse_url($uri, PHP_URL_PATH);
 
 require base_path('/src/router/Router.php');
 
