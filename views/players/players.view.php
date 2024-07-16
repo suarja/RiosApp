@@ -4,11 +4,22 @@
     <?php require base_path("/views/partials/header.php"); ?>
     <div class="relative isolate px-6 pt-24 lg:px-8">
         <div class="container mx-auto py-8">
+            <!-- Display errors -->
+            <?php if (isset($errors) && count($errors) > 0) : ?>
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Error!</strong>
+                    <ul>
+                        <?php foreach ($errors as $error) : ?>
+                            <li><?= $error ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
             <div class="flex flex-col gap-4 px-4">
                 <!-- Form for adding a new player -->
                 <div class="">
                     <div class="bg-white p-8 rounded-lg shadow-lg flex justify-between">
-                        <a class=" font-semibold leading-6 text-gray-900 bg-blue-200 hover:bg-blue-300 rounded-lg px-4 py-2" href="/player/store">Add a Player  </a>
+                        <a class=" font-semibold leading-6 text-gray-900 bg-blue-200 hover:bg-blue-300 rounded-lg px-4 py-2" href="/player/store">Add a Player </a>
                         </form>
                     </div>
                 </div>
