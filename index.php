@@ -5,7 +5,6 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require BASE_PATH . '/functions.php';
-dd(PHP_URL_PATH);
 
 $heading = "RiosApp";
 
