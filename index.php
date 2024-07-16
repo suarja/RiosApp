@@ -1,6 +1,6 @@
 <?php
 
-    define("BASE_PATH", __DIR__);
+define("BASE_PATH", __DIR__);
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -11,19 +11,19 @@ $heading = "RiosApp";
 
 require view("index", ["heading" => $heading]);
 
-spl_autoload_register(function ($class) {
-    $class =  str_replace('\\', DIRECTORY_SEPARATOR, $class);
-    $class = base_path("/src/{$class}.php");
-    if (file_exists($class)) {
-        require $class;
-    } else {
-        echo "Class not found";
-        echo $class;
-    }
-});
+// spl_autoload_register(function ($class) {
+//     $class =  str_replace('\\', DIRECTORY_SEPARATOR, $class);
+//     $class = base_path("/src/{$class}.php");
+//     if (file_exists($class)) {
+//         require $class;
+//     } else {
+//         echo "Class not found";
+//         echo $class;
+//     }
+// });
 
-
-$router = new Router\Router();
+require base_path('/src/router/Router.php');
+$router = new Router();
 
 require base_path('/src/router/routes.php');
 

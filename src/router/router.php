@@ -1,6 +1,5 @@
 <?php
 
-namespace Router;
 
 // function routeToController($routes)
 // {
