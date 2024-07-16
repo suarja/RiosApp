@@ -26,10 +26,7 @@ spl_autoload_register(function ($class) {
     }
 });
 
-// Set up the autoloader
-spl_autoload_register(function ($class) {
-    require BASE_PATH . '/src/' . str_replace('\\', '/', $class) . '.php';
-});
+
 
 
 $router = new Router();
