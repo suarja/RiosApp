@@ -9,7 +9,6 @@ require BASE_PATH . '/functions.php';
 
 $heading = "RiosApp";
 
-require view("index", ["heading" => $heading]);
 
 // spl_autoload_register(function ($class) {
 //     $class =  str_replace('\\', DIRECTORY_SEPARATOR, $class);
@@ -22,14 +21,11 @@ require view("index", ["heading" => $heading]);
 //     }
 // });
 
-require base_path('/src/router/Router.php');
-$router = new Router();
 
-require base_path('/src/router/routes.php');
 
 $method = $_POST["_method"] ?? $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
-$router->route(
-    $uri,
-    $method
-);
+
+require base_path('/src/router/Router.php');
+
+require view("index", ["heading" => $heading]);

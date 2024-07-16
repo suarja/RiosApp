@@ -44,3 +44,10 @@ class Router
         }
     }
 }
+
+$router = new Router();
+require base_path('/src/router/routes.php');
+$router->route(
+    $uri,
+    $method
+);
