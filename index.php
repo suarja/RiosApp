@@ -26,6 +26,6 @@ $method = $_POST["_method"] ?? $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 $uri = parse_url($uri, PHP_URL_PATH);
 
-require base_path('/src/router/Router.php');
+require base_path('/src/router/router.php');
 
 require view("index", ["heading" => $heading]);
