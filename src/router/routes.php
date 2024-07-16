@@ -1,6 +1,6 @@
 <?php
 
-require_once base_path('/src/router/router.php');
+require_once base_path('/src/router/Router.php');
 
 // $routes = [
 //     '/' => base_path('/src/controllers/landing.php'),
