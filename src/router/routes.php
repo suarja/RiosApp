@@ -1,6 +1,7 @@
 <?php
 
-use  Router\Router;
+
+require_once base_path("/src/Router/Router.php");
 
 $router = new Router();
 $router->get('/', base_path('/src/controllers/landing.php'));

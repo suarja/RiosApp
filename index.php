@@ -1,7 +1,7 @@
 <?php
 
 
-use Router\Router;
+// use Router\Router;
 
 define('BASE_PATH', __DIR__);
 
@@ -14,17 +14,17 @@ require BASE_PATH . '/functions.php';
 $heading = "RiosApp";
 
 require view("index", ["heading" => $heading]);
+require base_path("/src/Router/Router.php");
 
 
-
-spl_autoload_register(function ($class) {
-    $path = BASE_PATH . '/src/' . str_replace('\\', '/', $class) . '.php';
-    if (file_exists($path)) {
-        require $path;
-    } else {
-        error_log("Class file not found: $path");  // Log error for debugging
-    }
-});
+// spl_autoload_register(function ($class) {
+//     $path = BASE_PATH . '/src/' . str_replace('\\', '/', $class) . '.php';
+//     if (file_exists($path)) {
+//         require $path;
+//     } else {
+//         error_log("Class file not found: $path");  // Log error for debugging
+//     }
+// });
 
 
 

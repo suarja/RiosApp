@@ -1,6 +1,5 @@
 <?php
 
-namespace Router;
 
 require base_path("/src/router/routes.php");
 
