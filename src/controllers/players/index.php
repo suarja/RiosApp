@@ -14,11 +14,23 @@ $seasonId;
 $PUBG_API_KEY;
 // Get all players from the database
 $players = $db->getPlayers();
+// Map the players to an arrray of their account id 
+$playersAccountsIds = array_map(function ($player) {
+    return $player['id'];
+}, $players);
+$playerSeasonStats = getPlayerListSeasonStats($playersAccountsIds, $seasonId, $PUBG_API_KEY);
 $teamPlayers = [];
-foreach ($players as $player) {
+foreach ($players as  $player) {
     $player = Player::fromDB($player);
-    $playerSeasonStats = getPlayerSeasonStats($player, $seasonId, $PUBG_API_KEY);
-    $teamPlayers[] = new PlayerWithStats($player, $playerSeasonStats);
+    $stats;
+
+    foreach ($playerSeasonStats as $playerSeasonStat) {
+        if ($playerSeasonStat->playerId() == $player->id) {
+            $stats = $playerSeasonStat;
+            break;
+        }
+    }
+    $teamPlayers[] = new PlayerWithStats($player, $stats);
 }
 
 require view('players/players', compact('heading', 'teamPlayers'));

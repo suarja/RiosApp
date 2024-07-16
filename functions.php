@@ -35,7 +35,42 @@ function getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY)
 
         return $playerSeasonStats;
     } catch (Exception $e) {
-       return null;
+        return null;
+    }
+}
+function getPlayerListSeasonStats(array $playersAccountsIds, $seasonId, $PUBG_API_KEY)
+{
+    try {
+        // Init cURL session
+        $playersStr = implode(',', $playersAccountsIds);
+        $url = "https://api.pubg.com/shards/xbox/seasons/{$seasonId}/gameMode/squad/players?filter[playerIds]={$playersStr}";
+        $ch = curl_init($url);
+
+        // Set the HTTP headers and options
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Accept: application/vnd.api+json',
+            'Authorization: Bearer ' . $PUBG_API_KEY,
+        ]);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+        $response = curl_exec($ch);
+        if ($response === false) {
+            throw new Exception(curl_error($ch), curl_errno($ch));
+        }
+
+        $responseData = json_decode($response, true);
+        $playerSeasonStats = array_map(function ($player) {
+
+            return new PlayerSeasonData($player);
+        }, $responseData['data']);
+
+
+        curl_close($ch);
+
+        return $playerSeasonStats;
+    } catch (Exception $e) {
+        return null;
     }
 }
 

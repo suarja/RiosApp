@@ -22,8 +22,6 @@ class PlayerSeason
         if (isset($jsonArray['links'])) {
             $this->links = new SeasonPlayerLinks($jsonArray['links']['self']);
         }
-
-       
     }
 }
 
@@ -40,11 +38,12 @@ class PlayerSeasonData
             $this->attributes = new PlayerSeasonAttributes($data['attributes']);
         }
         if (isset($data['relationships'])) {
-            $this->relationships = new PlayerSeasonRelationships($data['relationships']);
+            $this->relationships =  PlayerSeasonRelationships::fromArray($data['relationships']);
         }
-
-
-
+    }
+    public function playerId()
+    {
+        return $this->relationships->player["id"];
     }
 }
 
@@ -145,12 +144,39 @@ class SeasonPlayerLinks
 }
 class PlayerSeasonRelationships
 {
+    public $matchesDuo;
+    public $matchesDuoFPP;
     public $matchesSquad;
-    // Add other relationships here
+    public $matchesSquadFPP;
+    public $season;
+    public $player;
+    public $matchesSolo;
+    public $matchesSoloFPP;
 
-    function __construct($matchesSquad)
+    function __construct($matchesDuo, $matchesDuoFPP, $matchesSquad, $matchesSquadFPP, $season, $player, $matchesSolo, $matchesSoloFPP)
     {
+        $this->matchesDuo = $matchesDuo;
+        $this->matchesDuoFPP = $matchesDuoFPP;
         $this->matchesSquad = $matchesSquad;
+        $this->matchesSquadFPP = $matchesSquadFPP;
+        $this->season = $season;
+        $this->player = $player;
+        $this->matchesSolo = $matchesSolo;
+        $this->matchesSoloFPP = $matchesSoloFPP;
+    }
+
+    public static function fromArray($data)
+    {
+        return new PlayerSeasonRelationships(
+            $data['matchesDuo']['data'] ?? [],
+            $data['matchesDuoFPP']['data'] ?? [],
+            $data['matchesSquad']['data'] ?? [],
+            $data['matchesSquadFPP']['data'] ?? [],
+            $data['season']['data'] ?? null,
+            $data['player']['data'] ?? null,
+            $data['matchesSolo']['data'] ?? [],
+            $data['matchesSoloFPP']['data'] ?? []
+        );
     }
 }
 
