@@ -35,7 +35,7 @@ function getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY)
 
         return $playerSeasonStats;
     } catch (Exception $e) {
-        echo $e->getMessage();
+       return null;
     }
 }
 
@@ -44,34 +44,38 @@ function getPlayer(
     $PUBG_API_KEY,
     $shardId = 'xbox',
 ) {
-    $playerName = urlencode($playerName);
-    // Init cURL session
-    $url = "https://api.pubg.com/shards/{$shardId}/players?filter[playerNames]={$playerName}";
-    $ch = curl_init();
+    try {
+        $playerName = urlencode($playerName);
+        // Init cURL session
+        $url = "https://api.pubg.com/shards/{$shardId}/players?filter[playerNames]={$playerName}";
+        $ch = curl_init();
 
-    curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_URL, $url);
 
-    // Set the HTTP headers and options
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Accept: application/vnd.api+json',
-        'Authorization: Bearer ' . $PUBG_API_KEY,
-    ]);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        // Set the HTTP headers and options
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Accept: application/vnd.api+json',
+            'Authorization: Bearer ' . $PUBG_API_KEY,
+        ]);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
-    $response = curl_exec($ch);
-    if ($response === false) {
-        throw new Exception(curl_error($ch), curl_errno($ch));
-    }
+        $response = curl_exec($ch);
+        if ($response === false) {
+            throw new Exception(curl_error($ch), curl_errno($ch));
+        }
 
-    if (isFetchError($response)) {
+        if (isFetchError($response)) {
+            return null;
+        }
+        $responseData = json_encode(json_decode($response, true)['data'][0]);
+        $player =  Player::fromJSON($responseData);
+        curl_close($ch);
+
+        return $player;
+    } catch (Exception $e) {
         return null;
     }
-    $responseData = json_encode(json_decode($response, true)['data'][0]);
-    $player =  Player::fromJSON($responseData);
-    curl_close($ch);
-
-    return $player;
 }
 
 
