@@ -17,7 +17,7 @@ if (empty($password)) {
 }
 
 if (empty($errors)) {
-    // check if the user exists
+    //? Refactor: add method to User model to find user by email (User::findByEmail)
     $user = $db->query("SELECT * FROM Users WHERE email = '$email'")->fetch();
 
     if ($user) {
@@ -25,7 +25,7 @@ if (empty($errors)) {
         $errors['email'] = 'Wrong email / password combination';
         require view('registration/register', ['errors' => $errors]);
     } else {
-        // register the user
+        //? Refactor: add method to User model to create user (User::create)
         $db->query("INSERT INTO Users (email, password) VALUES ('$email', '" . password_hash($password, PASSWORD_DEFAULT) . "')");
         $success = 'User registered successfully';
         redirect("/players");
