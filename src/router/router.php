@@ -1,7 +1,8 @@
 <?php
 
 ob_start(); // Start output buffering.
-
+require base_path('/src/core/auth/Auth.php');
+require base_path('/src/core/auth/Gest.php');
 class Router
 {
     protected $routes = [];
@@ -36,18 +37,9 @@ class Router
                 $routeFound = true;
 
                 if ($route["middleware"] === "auth") {
-
-                    $isLogged = $_SESSION["user"]["isLogged"] ?? false;
-                    if (!$isLogged) {
-                        header("Location: /login");
-                        exit;
-                    }
+                    Auth::handle();
                 } else if ($route["middleware"] === "gest") {
-                    $isLogged = $_SESSION["user"]["isLogged"] ?? false;
-                    if ($isLogged) {
-                        header("Location: /");
-                        exit;
-                    }
+                    Gest::handle();
                 }
 
                 require $route['controller'];
