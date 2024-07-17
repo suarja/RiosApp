@@ -1,6 +1,5 @@
 <?php
 
-use Core\Database;
 
 $heading = "Create Player";
 
@@ -9,7 +8,8 @@ require base_path("/config.php");
 require base_path('/src/core/Database.php');
 require base_path('/data-classes/index.php');
 
-$db = new Database($DB_CONFIG);
+require base_path("/src/core/App.php");
+$db = App::resolve('db');
 
 $errors = [];
 $playerName = $_POST['playerName'];

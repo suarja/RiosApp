@@ -1,7 +1,7 @@
 <?php
 
-require base_path("/src/core/Container.php");
-require base_path("/src/core/Database.php");
+require_once base_path("/src/core/Container.php");
+require_once base_path("/src/core/Database.php");
 class App
 {
     public static function setContainer()

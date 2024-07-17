@@ -8,8 +8,8 @@ require base_path("/config.php");
 $heading = "Player Stats";
 
 // Load the database
-require base_path('/src/core/Database.php');
-$db = new Database($DB_CONFIG);
+require base_path("/src/core/App.php");
+$db = App::resolve('db');
 
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

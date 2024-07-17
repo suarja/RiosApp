@@ -145,3 +145,8 @@ function isLogged()
 {
     return $_SESSION['user']['isLogged'] ?? false;
 }
+
+function dsn($DB_HOST, $DB_PORT, $DB_NAME)
+{
+    return "mysql:host={$DB_HOST};port={$DB_PORT};dbname={$DB_NAME}";
+}

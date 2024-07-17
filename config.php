@@ -37,10 +37,7 @@ if (!$DB_URL) {
 }
 
 
-function dsn($DB_HOST, $DB_PORT, $DB_NAME)
-{
-    return "mysql:host={$DB_HOST};port={$DB_PORT};dbname={$DB_NAME}";
-}
+
 
 $dsn = dsn($DB_HOST, $DB_PORT, $DB_NAME);
 

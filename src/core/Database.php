@@ -1,10 +1,5 @@
 <?php
 
-require base_path('/vendor/autoload.php');
-
-// Load the .env file
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->safeLoad();
 
 
 class Database

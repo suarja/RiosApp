@@ -3,7 +3,6 @@
 ob_start(); // Start output buffering.
 
 require base_path("/src/core/App.php");
-
 $db = App::resolve('db');
 
 $email = $_POST['email'];

@@ -1,17 +1,16 @@
 <?php
-require base_path('/src/data/player-1.php');
+require_once base_path('/src/data/player-1.php');
 $heading = 'Players';
 
+require_once base_path("/src/data/seasons-list.php");
+require_once base_path('/data-classes/PlayerWithStats.php');
+
+require_once base_path("/src/core/App.php");
+$db = App::resolve('db');
+$PUBG_API_KEY = App::resolve('PUBG_API_KEY');
 
 
-require base_path("/config.php");
-require base_path("/src/data/seasons-list.php");
-require base_path('/src/core/Database.php');
-require base_path('/data-classes/PlayerWithStats.php');
-
-$db = new Database($DB_CONFIG);
 $seasonId;
-$PUBG_API_KEY;
 // Get all players from the database
 $players = $db->getPlayers();
 // Map the players to an arrray of their account id 
