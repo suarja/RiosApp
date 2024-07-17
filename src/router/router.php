@@ -30,11 +30,13 @@ class Router
 
     public function route($uri, $method)
     {
+        $routeFound = false;
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
-
+                $routeFound = true;
 
                 if ($route["middleware"] === "auth") {
+
                     $isLogged = $_SESSION["user"]["isLogged"] ?? false;
                     if (!$isLogged) {
                         header("Location: /login");
@@ -47,11 +49,15 @@ class Router
                         exit;
                     }
                 }
+
                 require $route['controller'];
+                break;
             }
         }
-        // if no route is found
-        require base_path('/views/404.view.php');
+
+        if (!$routeFound) {
+            require view('404');
+        }
     }
 
     public function add($uri, $controller, $method)
