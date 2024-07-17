@@ -50,6 +50,8 @@ class Router
                 require $route['controller'];
             }
         }
+        // if no route is found
+        require base_path('/views/404.view.php');
     }
 
     public function add($uri, $controller, $method)
