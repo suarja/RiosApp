@@ -35,9 +35,15 @@ class Router
 
 
                 if ($route["middleware"] === "auth") {
-                    $isLogged = $_SESSION["isLogged"] ?? false;
+                    $isLogged = $_SESSION["user"]["isLogged"] ?? false;
                     if (!$isLogged) {
                         header("Location: /login");
+                        exit;
+                    }
+                } else if ($route["middleware"] === "gest") {
+                    $isLogged = $_SESSION["user"]["isLogged"] ?? false;
+                    if ($isLogged) {
+                        header("Location: /");
                         exit;
                     }
                 }
