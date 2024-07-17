@@ -1,0 +1,85 @@
+#11 23.22 ----------------------------------------------------------------------
+
+#11 23.22
+
+#11 23.22 Build complete.
+
+#11 23.22 Don't forget to run 'make test'.
+
+#11 23.22
+
+#11 23.25 + strip --strip-all modules/pdo_mysql.so
+
+#11 23.28 Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20230831/
+
+#11 23.38 find . -name \*.gcno -o -name \*.gcda | xargs rm -f
+
+#11 23.38 find . -name \*.lo -o -name \*.o -o -name \*.dep | xargs rm -f
+
+#11 23.39 find . -name \*.la -o -name \*.a | xargs rm -f
+
+#11 23.39 find . -name \*.so | xargs rm -f
+
+#11 23.40 find . -name .libs -a -type d|xargs rm -rf
+
+#11 23.40 rm -f libphp.la      modules/* libs/*
+
+#11 23.40 rm -f ext/opcache/jit/zend_jit_x86.c
+
+#11 23.41 rm -f ext/opcache/jit/zend_jit_arm64.c
+
+#11 23.41 rm -f ext/opcache/minilua
+
+#11 23.45 ### INSTALLING REMOTE MODULE pdo_pqsql ###
+
+#11 23.89 No releases available for package "pecl.php.net/pdo_pqsql"
+
+#11 23.89 install failed
+
+#11 ERROR: process "/bin/sh -c install-php-extensions pdo pdo_mysql pdo_pqsql mysqli gd curl zip intl pcntl bcmath" did not complete successfully: exit code: 1
+
+------
+
+> [ 6/12] RUN jdo pdo_mysql pdo_pqsql mysqli gd curl zip intl pcntl bcmath:
+
+23.39 find . -name \*.la -o -name \*.a | xargs rm -f
+
+23.39 find . -name \*.so | xargs rm -f
+
+23.40 find . -name .libs -a -type d|xargs rm -rf
+
+23.40 rm -f libphp.la      modules/* libs/*
+
+23.40 rm -f ext/opcache/jit/zend_jit_x86.c
+
+23.41 rm -f ext/opcache/jit/zend_jit_arm64.c
+
+23.41 rm -f ext/opcache/minilua
+
+23.45 ### INSTALLING REMOTE MODULE pdo_pqsql ###
+
+23.89 No releases available for package "pecl.php.net/pdo_pqsql"
+
+23.89 install failed
+
+------
+
+Dockerfile:31
+
+--------------------
+
+29 |     ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+30 |     RUN chmod +x /usr/local/bin/install-php-extensions && sync
+
+31 | >>> RUN install-php-extensions pdo pdo_mysql pdo_pqsql mysqli gd curl zip intl pcntl bcmath
+
+32 |
+
+33 |     RUN chown -R www-data:www-data /var/www
+
+--------------------
+
+error: failed to solve: process "/bin/sh -c install-php-extensions pdo pdo_mysql pdo_pqsql mysqli gd curl zip intl pcntl bcmath" did not complete successfully: exit code: 1
+
+Failed to build with zeaburpack: run buildctl build: exit status 1
