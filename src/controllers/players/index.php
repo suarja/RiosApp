@@ -1,6 +1,7 @@
 <?php
 require_once base_path('/src/data/player-1.php');
 $heading = 'Players';
+$isLogged = isLogged();
 
 require_once base_path("/src/data/seasons-list.php");
 require_once base_path('/data-classes/PlayerWithStats.php');

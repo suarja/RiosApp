@@ -6,7 +6,7 @@ require base_path("/src/data/seasons-list.php");
 require base_path("/config.php");
 
 $heading = "Player Stats";
-
+$isLogged = isLogged();
 // Load the database
 require base_path("/src/core/App.php");
 $db = App::resolve('db');
