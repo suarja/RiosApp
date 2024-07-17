@@ -1,8 +1,9 @@
 <?php
 
 ob_start(); // Start output buffering.
-require base_path('/src/core/auth/Auth.php');
-require base_path('/src/core/auth/Gest.php');
+
+require base_path('/src/core/auth/Middleware.php');
+
 class Router
 {
     protected $routes = [];
@@ -31,24 +32,13 @@ class Router
 
     public function route($uri, $method)
     {
-        $routeFound = false;
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
-                $routeFound = true;
 
-                if ($route["middleware"] === "auth") {
-                    Auth::handle();
-                } else if ($route["middleware"] === "gest") {
-                    Gest::handle();
-                }
+                Midddleware::resolve($route['middleware']);
 
-                require $route['controller'];
-                break;
+                return require $route['controller'];
             }
-        }
-
-        if (!$routeFound) {
-            require view('404');
         }
     }
 
