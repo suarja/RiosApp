@@ -14,7 +14,7 @@ class Midddleware
         }
         $middleware = self::MAP[$key];
         if (!class_exists($middleware)) {
-            return;
+            throw new Exception("Middleware class not found");
         }
         return $middleware::handle();
     }
