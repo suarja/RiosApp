@@ -3,6 +3,7 @@ require base_path('/src/data/player-1.php');
 $heading = 'Players';
 
 
+
 require base_path("/config.php");
 require base_path("/src/data/seasons-list.php");
 require base_path('/src/core/Database.php');

@@ -140,3 +140,8 @@ function base_path($path = '')
 {
     return BASE_PATH . $path;
 }
+
+function isLogged()
+{
+    return $_SESSION['user']['isLogged'] ?? false;
+}

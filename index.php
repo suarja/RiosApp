@@ -20,5 +20,6 @@ require base_path('/src/router/router.php');
 
 
 // View setup
+$isLogged = isLogged();
 $heading = "RiosApp";
-require view("index", ["heading" => $heading]);
+require view("index", ["heading" => $heading, "isLogged" => $isLogged]);

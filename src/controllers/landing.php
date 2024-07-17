@@ -1,3 +1,5 @@
 <?php
 $heading = "RiosApp";
-require view('landing', compact('heading'));
+$isLogged = isLogged();
+
+require view('landing', compact('heading', 'isLogged'));
