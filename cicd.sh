@@ -19,6 +19,8 @@ read -p "Enter commit message: " commit_message
 git commit -m "$commit_message"
 commit_id=$(git rev-parse --short HEAD)
 echo "Commit ID: $commit_id"
+echo "Pushing changes to remote repository..."
+git push origin main
 
 # Build the Docker image with commit ID as the tag
 IMAGE_FULL_NAME="gcr.io/$PROJECT_ID/$IMAGE_NAME:$commit_id"
