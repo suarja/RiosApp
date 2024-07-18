@@ -1,6 +1,7 @@
 <?php
 
 ob_start(); // Start output buffering.
+$isLogged = isLogged();
 
 require base_path("/src/core/App.php");
 $db = App::resolve('db');
