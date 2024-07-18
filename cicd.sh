@@ -3,7 +3,7 @@
 # Variables for configuration
 PROJECT_ID="riosapp-baks"
 IMAGE_NAME="riosapp"
-CLUSTER_NAME="riosapp-cluster"
+CLUSTER_NAME="rios-cluster"
 CLUSTER_ZONE="europe-west9-a"
 DOCKERFILE_PATH="."  # Directory containing the Dockerfile
 DEPLOYMENT_NAME="riosapp-deployment"
@@ -23,7 +23,9 @@ echo "Commit ID: $commit_id"
 # Build the Docker image with commit ID as the tag
 IMAGE_FULL_NAME="gcr.io/$PROJECT_ID/$IMAGE_NAME:$commit_id"
 echo "Building Docker image $IMAGE_FULL_NAME..."
-docker build -t $IMAGE_FULL_NAME $DOCKERFILE_PATH
+# docker build -t $IMAGE_FULL_NAME $DOCKERFILE_PATH
+# docker buildx build --platform linux/amd64 -t $IMAGE_FULL_NAME $DOCKERFILE_PATH --push .
+docker buildx build --platform linux/amd64 -t $IMAGE_FULL_NAME $DOCKERFILE_PATH 
 if [ $? -ne 0 ]; then
     echo "Docker build failed. Exiting..."
     exit 1
