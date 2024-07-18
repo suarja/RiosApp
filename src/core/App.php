@@ -1,14 +1,16 @@
 <?php
 
-require_once base_path("/src/core/Container.php");
-require_once base_path("/src/core/Database.php");
 class App
 {
     public static function setContainer()
     {
+        require_once base_path("/src/core/Container.php");
+
         $container = new Container();
         $container->bind('db', function () {
             require base_path("/config.php");
+            require base_path("/src/core/Database.php");
+
             return new Database(
                 $DB_CONFIG
             );
