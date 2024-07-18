@@ -1,7 +1,6 @@
-<?php base_path("/views/partials/head.php"); ?>
 
 <main class="h-screen bg-gray-200">
-    <div class=" h-full w-full">
+    <div class="h-fit w-full">
         <?php require base_path("/views/partials/header.php"); ?>
 
 
@@ -51,4 +50,3 @@
         </div>
     </div>
 </main>
-<?php base_path("/views/partials/foooter.php"); ?>
