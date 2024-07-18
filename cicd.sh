@@ -23,7 +23,7 @@ echo "Pushing changes to remote repository..."
 git push origin main
 
 # Build the Docker image with commit ID as the tag
-IMAGE_FULL_NAME="gcr.io/$PROJECT_ID/$IMAGE_NAME:$commit_id"
+IMAGE_FULL_NAME="gcr.io/$PROJECT_ID/$IMAGE_NAME:lastest" # Set latest tag for now. Will change to commit_id once we manage to update the deployment file to use the commit_id
 echo "Building Docker image $IMAGE_FULL_NAME..."
 # docker build -t $IMAGE_FULL_NAME $DOCKERFILE_PATH
 # docker buildx build --platform linux/amd64 -t $IMAGE_FULL_NAME $DOCKERFILE_PATH --push .
