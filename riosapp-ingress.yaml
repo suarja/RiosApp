@@ -4,7 +4,14 @@ metadata:
   name: riosapp-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"  # Specify the ClusterIssuer
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"  # Force HTTPS redirection
 spec:
+  ingressClassName: "nginx"  # Explicitly reference the IngressClass
+  tls:  # TLS settings for enabling HTTPS
+  - hosts:
+    - "riosapp.jason-suarez.com"
+    secretName: mysite-tls  # The secret that contains the TLS certificate
   rules:
   - host: "riosapp.jason-suarez.com"
     http:
@@ -15,4 +22,4 @@ spec:
           service:
             name: riosapp-service
             port:
-              number: 80
+              number: 80  # Ensure this matches the port your service is configured to expose

@@ -23,6 +23,8 @@ $RECYCLE.BIN/
 *.msp
 
 deployment.yaml
+compose.yaml
+Dockerfile
 # Windows shortcuts
 *.lnk
 
