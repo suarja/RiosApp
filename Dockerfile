@@ -1,18 +1,14 @@
 # syntax=docker/dockerfile:1
 
-# Stage 1: Composer dependencies
 FROM composer:lts as deps
 WORKDIR /app
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 
-# Stage 2: PHP Environment Setup
 FROM php:8.3.9-apache as final
 
-# Enable Apache Rewrite Module
 RUN a2enmod rewrite
-
-# Update Apache configuration to allow .htaccess overrides
+RUN docker-php-ext-install pdo pdo_mysql
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
 # Install PHP extensions (example for gd)
@@ -29,6 +25,14 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Copy the app dependencies from the previous install stage.
 COPY --from=deps /app/vendor/ /var/www/html/vendor
+
+# Copy custom Apache configuration files
+COPY ./ports.conf /etc/apache2/ports.conf
+COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Ensure the server name is set to suppress the message
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 
 # Copy the app files from the project directory.
 COPY . /var/www/html
