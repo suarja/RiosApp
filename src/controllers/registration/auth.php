@@ -18,7 +18,7 @@ if (empty($password)) {
 }
 
 if (empty($errors)) {
-    $user = $db->query("SELECT * FROM Users WHERE email = '$email'")->fetch();
+    $user = $db->query("SELECT * FROM users WHERE email = '$email'")->fetch();
     if (!$user) {
         $errors['password'] = 'Wrong email / password combination';
         $errors['email'] = 'Wrong email / password combination';

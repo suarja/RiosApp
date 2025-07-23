@@ -7,6 +7,7 @@ $db = App::resolve('db');
 
 $email = $_POST['email'];
 $password = $_POST['password'];
+$username = $_POST['username'] ?? '';
 
 $errors = [];
 if (empty($email)) {
@@ -15,10 +16,13 @@ if (empty($email)) {
 if (empty($password)) {
     $errors['password'] = 'Password is required';
 }
+if (empty($username)) {
+    $errors['username'] = 'Username is required';
+}
 
 if (empty($errors)) {
     //? Refactor: add method to User model to find user by email (User::findByEmail)
-    $user = $db->query("SELECT * FROM Users WHERE email = '$email'")->fetch();
+    $user = $db->query("SELECT * FROM users WHERE email = '$email'")->fetch();
 
     if ($user) {
         $errors['password'] = 'Wrong email / password combination';
@@ -26,7 +30,7 @@ if (empty($errors)) {
         require view('registration/register', ['errors' => $errors]);
     } else {
         //? Refactor: add method to User model to create user (User::create)
-        $db->query("INSERT INTO Users (email, password) VALUES ('$email', '" . password_hash($password, PASSWORD_DEFAULT) . "')");
+        $db->query("INSERT INTO users (username, email, password) VALUES ('$username', '$email', '" . password_hash($password, PASSWORD_DEFAULT) . "')");
         $success = 'User registered successfully';
         redirect("/register");
     }
