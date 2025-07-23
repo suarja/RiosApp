@@ -1,5 +1,6 @@
-<?php base_path("/views/partials/head.php"); ?>
+<?php require base_path("/views/partials/head.php"); ?>
 
+<body>
 <main class="h-screen bg-white">
   <div class="bg-white h-min-screen w-full">
     <?php require base_path("/views/partials/header.php"); ?>
@@ -70,4 +71,4 @@
   </div>
 </main>
 
-<?php base_path("/views/partials/foooter.php"); ?>
+<?php require base_path("/views/partials/footer.php"); ?>

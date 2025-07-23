@@ -5,7 +5,7 @@
             <span class="sr-only">
               <p class="text-black"><?php $riosName; ?></p>
             </span>
-            <img class="h-16 w-auto rounded-full" src="./public/rios-logo.png" alt="" />
+            <img class="h-16 w-auto rounded-full" src="/public/rios-logo.png" alt="" />
           </a>
         </div>
         <div class="flex lg:hidden">

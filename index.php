@@ -8,8 +8,17 @@ define("BASE_PATH", __DIR__);
 require BASE_PATH . '/functions.php';
 
 // Error reporting
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// En production, désactiver l'affichage des erreurs
+$isProd = getenv('KUBERNETES_SERVICE_HOST') !== false || getenv('APP_ENV') === 'production';
+if ($isProd) {
+    error_reporting(0);
+    ini_set('display_errors', 0);
+    ini_set('log_errors', 1);
+} else {
+    // En développement, afficher les erreurs
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+}
 
 
 // Router setup

@@ -3,6 +3,7 @@
 require base_path("/src/core/App.php");
 
 $db = App::resolve('db');
+$isLogged = isLogged();
 
 
 $email = $_POST['email'];

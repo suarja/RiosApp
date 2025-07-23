@@ -1,4 +1,7 @@
 
+<?php require base_path("/views/partials/head.php"); ?>
+
+<body>
 <main class="h-screen bg-gray-200">
     <div class="h-fit w-full">
         <?php require base_path("/views/partials/header.php"); ?>
@@ -50,3 +53,5 @@
         </div>
     </div>
 </main>
+
+<?php require base_path("/views/partials/footer.php"); ?>

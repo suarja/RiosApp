@@ -1,3 +1,4 @@
 <?php
 $isLogged = isLogged();
-require view('registration/register');
+$heading = "Register";
+require view('registration/register', compact('isLogged', 'heading'));

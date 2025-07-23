@@ -22,14 +22,14 @@ if (empty($errors)) {
     if (!$user) {
         $errors['password'] = 'Wrong email / password combination';
         $errors['email'] = 'Wrong email / password combination';
-        require view('registration/login', ['errors' => $errors]);
+        require view('registration/login', ['errors' => $errors, 'isLogged' => $isLogged]);
         exit;
     }
 
     if (!password_verify($password, $user['password'])) {
         $errors['password'] = 'Wrong email / password combination';
         $errors['email'] = 'Wrong email / password combination';
-        require view('registration/login', ['errors' => $errors]);
+        require view('registration/login', ['errors' => $errors, 'isLogged' => $isLogged]);
         exit;
     }
 
@@ -37,7 +37,7 @@ if (empty($errors)) {
     header('Location: /');
     exit;
 } else {
-    require view('registration/login', ['errors' => $errors]);
+    require view('registration/login', ['errors' => $errors, 'isLogged' => $isLogged]);
     exit;
 }
 

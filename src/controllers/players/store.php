@@ -1,6 +1,6 @@
 <?php
 
-
+$isLogged = isLogged();
 $heading = "Create Player";
 
 // Load the database
@@ -16,20 +16,20 @@ $playerName = $_POST['playerName'];
 // Check if the player name is empty
 if (empty($playerName)) {
     $errors[] = "Please enter a player name";
-    require view('players/player-form', compact('heading', 'errors'));
+    require view('players/player-form', compact('heading', 'errors', 'isLogged'));
     exit;
 }
 // check in the database if the player exists
 $isPlayerInDatabase = $db->isPlayerInDatabaseFromName($playerName);
 if ($isPlayerInDatabase) {
     $errors[] = "Player already exists";
-    require view('players/player-form', compact('heading', 'errors'));
+    require view('players/player-form', compact('heading', 'errors', 'isLogged'));
     exit;
 } else {
     $player = getPlayer($playerName, $PUBG_API_KEY);
     if (!$player) {
         $errors[] = "Player not found";
-        require view('players/player-form', compact('heading', 'errors'));
+        require view('players/player-form', compact('heading', 'errors', 'isLogged'));
         exit;
     }
     $db->insertPlayer($player);
