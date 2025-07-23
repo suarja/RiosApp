@@ -28,13 +28,26 @@ if (empty($errors)) {
     if ($user) {
         $errors['password'] = 'Wrong email / password combination';
         $errors['email'] = 'Wrong email / password combination';
-        require view('registration/register', ['errors' => $errors]);
+        require view('registration/register', ['errors' => $errors, 'isLogged' => $isLogged, 'heading' => 'Register']);
     } else {
         //? Refactor: add method to User model to create user (User::create)
         $db->query("INSERT INTO users (username, email, password) VALUES ('$username', '$email', '" . password_hash($password, PASSWORD_DEFAULT) . "')");
-        $success = 'User registered successfully';
-        redirect("/register");
+        
+        // Récupérer l'ID du nouvel utilisateur
+        $newUser = $db->query("SELECT * FROM users WHERE email = '$email'")->fetch();
+        
+        // Connecter automatiquement l'utilisateur
+        $_SESSION['user'] = [
+            'id' => $newUser['id'], 
+            'email' => $newUser['email'], 
+            'username' => $newUser['username'],
+            'isLogged' => true
+        ];
+        
+        // Rediriger vers la page d'accueil
+        header('Location: /');
+        exit;
     }
 } else {
-    require view('registration/register', ['errors' => $errors]);
+    require view('registration/register', ['errors' => $errors, 'isLogged' => $isLogged, 'heading' => 'Register']);
 }

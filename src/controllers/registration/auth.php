@@ -33,7 +33,12 @@ if (empty($errors)) {
         exit;
     }
 
-    $_SESSION['user'] = ['id' => $user['id'], 'email' => $user['email'], 'isLogged' => true];
+    $_SESSION['user'] = [
+        'id' => $user['id'], 
+        'email' => $user['email'], 
+        'username' => $user['username'] ?? '',
+        'isLogged' => true
+    ];
     header('Location: /');
     exit;
 } else {

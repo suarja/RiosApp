@@ -3,13 +3,12 @@
 $isLogged = isLogged();
 $heading = "Create Player";
 
-// Load the database
-require base_path("/config.php");
-require base_path('/src/core/Database.php');
-require base_path('/data-classes/index.php');
+// Load dependencies
+require_once base_path('/data-classes/index.php');
+require_once base_path("/src/core/App.php");
 
-require base_path("/src/core/App.php");
 $db = App::resolve('db');
+$PUBG_API_KEY = App::resolve('PUBG_API_KEY');
 
 $errors = [];
 $playerName = $_POST['playerName'];

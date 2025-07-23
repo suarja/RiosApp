@@ -60,11 +60,16 @@ function getPlayerListSeasonStats(array $playersAccountsIds, $seasonId, $PUBG_AP
         }
 
         $responseData = json_decode($response, true);
+        
+        // Vérifier si la réponse contient des données
+        if (!isset($responseData['data']) || !is_array($responseData['data'])) {
+            curl_close($ch);
+            return [];
+        }
+        
         $playerSeasonStats = array_map(function ($player) {
-
             return new PlayerSeasonData($player);
         }, $responseData['data']);
-
 
         curl_close($ch);
 
