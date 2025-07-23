@@ -14,32 +14,43 @@ $errors = [];
 $playerName = $_POST['playerName'];
 // Check if the player name is empty
 if (empty($playerName)) {
-    $errors[] = "Please enter a player name";
+    $errors[] = "Veuillez entrer un nom de joueur";
     require view('players/player-form', compact('heading', 'errors', 'isLogged'));
     exit;
 }
+
 // check in the database if the player exists
 $isPlayerInDatabase = $db->isPlayerInDatabaseFromName($playerName);
 if ($isPlayerInDatabase) {
-    $errors[] = "Player already exists";
+    $errors[] = "Ce joueur est déjà dans votre équipe";
     require view('players/player-form', compact('heading', 'errors', 'isLogged'));
     exit;
 } else {
     $player = getPlayer($playerName, $PUBG_API_KEY);
     if (!$player) {
-        $errors[] = "Player not found";
+        $errors[] = "Joueur '$playerName' introuvable sur PUBG Xbox. Vérifiez l'orthographe exacte du nom.";
         require view('players/player-form', compact('heading', 'errors', 'isLogged'));
         exit;
     }
+    
+    // Ajouter le joueur
     $db->insertPlayer($player);
+    
+    // Récupérer et sauvegarder ses lifetime stats
+    $lifetimeStats = getPlayerLifetimeStats($player->id, $PUBG_API_KEY);
+    if ($lifetimeStats) {
+        $totalStats = calculateTotalStats($lifetimeStats);
+        // On peut stocker ces stats dans le JSON assets ou créer une nouvelle colonne
+        // Pour l'instant, on va les stocker temporairement dans la session pour l'affichage
+        $_SESSION['latest_player_stats'] = [
+            'player_id' => $player->id,
+            'stats' => $totalStats,
+            'detailed_stats' => $lifetimeStats
+        ];
+    }
 
-    //* Add the stats to DB
-    // $playerSeasonStats = getPlayerSeasonStats($playerOne, $seasonId, $PUBG_API_KEY);
-    // $db->insertPlayerSeasonStats($playerOne, $playerSeasonStats);
-
-    //? Consider redirect to the player page
-    // require view('players/player', compact('heading', 'playerOne', 'playerSeasonStats'));
-
+    // Rediriger vers la team avec un message de succès
+    $_SESSION['success_message'] = "Joueur '{$player->attributes->name}' ajouté avec succès à l'équipe !";
     redirect("/players");
     exit;
 }

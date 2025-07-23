@@ -18,30 +18,36 @@ $players = $db->getPlayers();
 $teamPlayers = [];
 
 if (!empty($players)) {
-    // Map the players to an array of their account id 
-    $playersAccountsIds = array_map(function ($player) {
-        return $player['id'];
-    }, $players);
-    
-    // Utiliser le seasonId depuis seasons-list.php
-    $playerSeasonStats = getPlayerListSeasonStats($playersAccountsIds, $seasonId, $PUBG_API_KEY);
-    
-    // Vérifier si on a des stats
-    if ($playerSeasonStats === null) {
-        $playerSeasonStats = [];
-    }
-    
-    foreach ($players as  $player) {
-        $player = Player::fromDB($player);
+    foreach ($players as $player) {
+        $playerObj = Player::fromDB($player);
+        
+        // Récupérer les lifetime stats pour chaque joueur
+        $lifetimeStats = getPlayerLifetimeStats($playerObj->id, $PUBG_API_KEY);
         $stats = null;
-
-        foreach ($playerSeasonStats as $playerSeasonStat) {
-            if ($playerSeasonStat->playerId() == $player->id) {
-                $stats = $playerSeasonStat;
-                break;
-            }
+        
+        if ($lifetimeStats) {
+            // Créer un objet stats simple pour compatibilité avec PlayerWithStats
+            $totalStats = calculateTotalStats($lifetimeStats);
+            $stats = (object) [
+                'kills' => $totalStats['kills'],
+                'wins' => $totalStats['wins'],
+                'losses' => $totalStats['losses'],
+                'roundsPlayed' => $totalStats['roundsPlayed'],
+                'kd' => $totalStats['roundsPlayed'] > 0 ? $totalStats['kills'] / max($totalStats['losses'], 1) : 0,
+                'assists' => 0, // Pas disponible dans lifetime stats
+                'maxKillStreaks' => 0, // Pas disponible dans lifetime stats
+                'longestKill' => $totalStats['longestKill'],
+                'headshotKills' => $totalStats['headshotKills'],
+                'solo' => $lifetimeStats['solo'] ?? [],
+                'duo' => $lifetimeStats['duo'] ?? [],
+                'squad' => $lifetimeStats['squad'] ?? []
+            ];
+        } else {
+            // Debug: Afficher pourquoi les stats ne sont pas disponibles
+            error_log("Lifetime stats non disponibles pour le joueur: " . $playerObj->attributes->name . " (ID: " . $playerObj->id . ")");
         }
-        $teamPlayers[] = new PlayerWithStats($player, $stats);
+        
+        $teamPlayers[] = new PlayerWithStats($playerObj, $stats);
     }
 }
 
