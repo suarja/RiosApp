@@ -11,7 +11,7 @@ class App
             require_once base_path("/src/core/Database.php");
             
             // Charger la configuration directement
-            $isProd = getenv('KUBERNETES_SERVICE_HOST') !== false;
+            $isProd = getenv('RAILWAY_ENVIRONMENT_NAME') !== false || getenv('KUBERNETES_SERVICE_HOST') !== false;
             
             if ($isProd) {
                 $DB_HOST = getenv('DB_HOST');
@@ -42,7 +42,7 @@ class App
         });
         
         $container->bind('PUBG_API_KEY', function () {
-            $isProd = getenv('KUBERNETES_SERVICE_HOST') !== false;
+            $isProd = getenv('RAILWAY_ENVIRONMENT_NAME') !== false || getenv('KUBERNETES_SERVICE_HOST') !== false;
             
             if ($isProd) {
                 return getenv('PUBG_API_KEY');

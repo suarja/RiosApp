@@ -9,7 +9,7 @@ require BASE_PATH . '/functions.php';
 
 // Error reporting
 // En production, désactiver l'affichage des erreurs
-$isProd = getenv('KUBERNETES_SERVICE_HOST') !== false || getenv('APP_ENV') === 'production';
+$isProd = getenv('RAILWAY_ENVIRONMENT_NAME') !== false || getenv('APP_ENV') === 'production' || getenv('KUBERNETES_SERVICE_HOST') !== false;
 if ($isProd) {
     error_reporting(0);
     ini_set('display_errors', 0);
