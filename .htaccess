@@ -1,6 +1,12 @@
 Options +FollowSymLinks -MultiViews
 RewriteEngine On
 RewriteBase /
+
+# Handle Railway/Nginx proxying
+RewriteCond %{HTTP:X-Forwarded-Proto} ^https$
+RewriteRule ^(.*)$ - [env=HTTPS:on]
+
+# Route all requests to index.php
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [L]
+RewriteRule ^(.*)$ index.php [QSA,L]
